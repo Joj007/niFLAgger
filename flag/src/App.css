@@ -1,0 +1,129 @@
+*
+{
+  margin: 0;
+  padding: 0;
+}
+
+body
+{
+  background-color: #202D36;
+}
+
+.countrycontainer
+{
+  font-family:Arial, Helvetica, sans-serif;
+  width: 20vw;
+  height: 30vw;
+  background-color: #2B3743;
+  border-radius: 10px;
+  color: white;
+
+  h2
+  {
+    padding-top: 20px;
+    padding-bottom: 10px;
+    padding-left: 35px;
+    font-size: 1.6em;
+  }
+
+  p
+  {
+    font-size: 0.9em;
+    padding: 5px;
+    padding-left: 35px;
+
+  }
+
+
+  img
+  {
+    width: 20vw;
+    height: 15vw;
+    border-radius: 10px 10px 0 0;
+  }
+
+}
+
+
+
+#countryGrid
+{
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  background-color: #202D36;
+  margin: 20px;
+  row-gap: 100px;
+  justify-items:center;
+}
+
+#searchbarDiv
+{
+  height: 48px;
+  width: 25vw;
+  background-color: #2B3743;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  margin: 65px;
+
+  img
+  {
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(1);
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  input
+  {
+    background-color: transparent;
+    width: 22vw;
+    border: none;
+    height: 48px;
+    color: white;
+    font-size: 16px;
+  }
+
+  input::placeholder
+  {
+    color: white;
+  }
+
+  input:focus
+  {
+    outline: none;
+  }
+}
+
+#filterLine
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+#regionFilter
+{
+  height: 48px;
+  width: 15vw;
+  background-color: #2B3743;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  margin: 65px;
+
+  select
+  {
+    width: 100%;
+    height: 100%;
+    background-color: #2B3743;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    color: white;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 1.2em;
+  }
+}
