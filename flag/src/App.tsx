@@ -19,18 +19,22 @@ function App() {
   const [countriesFiltered, setCountriesFiltered] = useState<CountryInterface[]>([])
 
   const filtering = (()=>{
-      console.log('a')
       let list: CountryInterface[] = [];
+      let searchText:string = document.getElementsByTagName('input')[0].value.toLowerCase()
+      let regionFilter:string = document.getElementsByTagName('select')[0].value
       countries.map((country)=>{
-        if (country.name?.toLowerCase().includes(document.getElementsByTagName('input')[0].value.toLowerCase())) {
-          list.push(country)
+        if (country.region==regionFilter||regionFilter=="All") {
+          if (country.name?.toLowerCase().includes(searchText)) {
+            list.push(country)
+          }
+          else if (country.capital?.toLowerCase().includes(searchText)) {
+            list.push(country)
+          }
+          else if (country.subregion?.toLowerCase().includes(searchText)) {
+            list.push(country)
+          }
         }
-        else if (country.capital?.toLowerCase().includes(document.getElementsByTagName('input')[0].value.toLowerCase())) {
-          list.push(country)
-        }
-        else if (country.subregion?.toLowerCase().includes(document.getElementsByTagName('input')[0].value.toLowerCase())) {
-          list.push(country)
-        }
+
       })
       setCountriesFiltered(list)
   
@@ -56,13 +60,13 @@ function App() {
       <input id='searchBar' onChange={filtering} placeholder='Search for a country...' type="text"/>
     </div>
     <div id='regionFilter'>
-        <select>
-            <option value="all">All</option>
-            <option value="europa">Africa</option>
-            <option value="africa">America</option>
-            <option value="europa">Asia</option>
-            <option value="africa">Europe</option>
-            <option value="europa">Oceania</option>
+        <select onChange={filtering}>
+            <option value="All">All</option>
+            <option value="Africa">Africa</option>
+            <option value="America">America</option>
+            <option value="Asia">Asia</option>
+            <option value="Europe">Europe</option>
+            <option value="Oceania">Oceania</option>
         </select>
     </div>
   </div>
