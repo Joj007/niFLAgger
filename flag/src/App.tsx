@@ -17,6 +17,7 @@ function App() {
 
   const [countries, setCountries] = useState<CountryInterface[]>([])
   const [countriesFiltered, setCountriesFiltered] = useState<CountryInterface[]>([])
+  const [isDark, setIsDark] = useState<boolean>(true)
 
   const filtering = (()=>{
       let list: CountryInterface[] = [];
@@ -41,6 +42,25 @@ function App() {
     }
   )
 
+  const changeTheme = (()=>{
+    if (!isDark) {
+      document.documentElement.style.setProperty('--primary-color', '#202D36');
+      document.documentElement.style.setProperty('--secondary-color', '#2B3743');
+      document.documentElement.style.setProperty('--text-color', 'white');
+      document.documentElement.style.setProperty('--contrast', '100%');
+
+      setIsDark(true)
+      console.log(isDark)
+    }else{
+      document.documentElement.style.setProperty('--primary-color', '#DADADA');
+      document.documentElement.style.setProperty('--secondary-color', '#FFFFFF');
+      document.documentElement.style.setProperty('--text-color', 'black');
+      document.documentElement.style.setProperty('--contrast', '0%');
+      setIsDark(false)
+      console.log(isDark)
+    }
+  })
+
   useEffect(()=>{
     fetch("data.json")
     .then(n=>n.json())
@@ -51,9 +71,15 @@ function App() {
     
     })
   },[])
-
   return (
     <>
+    <nav>
+      <h1>Where in the world?</h1>
+      <div id='themeDiv' onClick={changeTheme}>
+        <img id='themeIcon' src={isDark?"moon.png":"sun.png"} alt=""/>
+        <span>{isDark?"Dark mode":"Light mode"}</span>
+      </div>
+    </nav>
   <div id='filterLine'>
     <div id='searchbarDiv'>
       <img src="zoom-lens.png" alt="" />
@@ -63,7 +89,7 @@ function App() {
         <select onChange={filtering}>
             <option value="All">All</option>
             <option value="Africa">Africa</option>
-            <option value="America">America</option>
+            <option value="Americas">America</option>
             <option value="Asia">Asia</option>
             <option value="Europe">Europe</option>
             <option value="Oceania">Oceania</option>
@@ -87,6 +113,7 @@ function App() {
 
     </>
   )
+
 }
 
 export default App
